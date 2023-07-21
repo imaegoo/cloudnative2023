@@ -1,9 +1,8 @@
 FROM node:lts-alpine as builder
 
-ADD ./web/ /root/
+ADD ./web/ /root/web/
 WORKDIR /root/web/
-RUN yarn install
-RUN yarn run build
+RUN yarn install && yarn run build
 
 FROM nginx:alpine
 
