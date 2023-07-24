@@ -13,10 +13,15 @@
 ![](./img/architecture.png)
 
 操作系统: Alpine Linux 容器
+
 运行环境: 阿里云 SAE
+
 编程语言: 前端 TypeScript + React; 后端 Java + Spring Boot
+
 数据存储: 阿里云 RDS
+
 专有网络: 阿里云 VPC
+
 公网访问: 阿里云 SLB
 
 # 安全和稳定性
