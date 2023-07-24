@@ -10,6 +10,8 @@
 
 （介绍软件的技术架构和特点，包括软件的操作系统、运行环境、编程语言、数据存储方式等方面）
 
+![](./img/architecture.png)
+
 操作系统: Alpine Linux 容器
 运行环境: 阿里云 SAE
 编程语言: 前端 TypeScript + React; 后端 Java + Spring Boot
