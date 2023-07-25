@@ -25,7 +25,7 @@ const PreviewSamplePlugin = (ctx: IPublicModelPluginContext) => {
           align: 'right',
         },
         content: (
-          <Button type="primary" onClick={() => doPreview()}>
+          <Button onClick={() => doPreview()}>
             预览
           </Button>
         ),

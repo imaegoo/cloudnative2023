@@ -19,18 +19,18 @@ module.exports = ({ onGetWebpackConfig }) => {
     });
 
     config
-    .plugin('index')
-    .use(HtmlWebpackPlugin, [
-      {
-        inject: false,
-        minify: false,
-        templateParameters: {
-          version,
+      .plugin('index')
+      .use(HtmlWebpackPlugin, [
+        {
+          inject: false,
+          minify: false,
+          templateParameters: {
+            version,
+          },
+          template: require.resolve('./public/index.ejs'),
+          filename: 'index.html',
         },
-        template: require.resolve('./public/index.ejs'),
-        filename: 'index.html',
-      },
-    ]);
+      ]);
     config
       .plugin('preview')
       .use(HtmlWebpackPlugin, [
@@ -40,6 +40,17 @@ module.exports = ({ onGetWebpackConfig }) => {
           },
           template: require.resolve('./public/preview.html'),
           filename: 'preview.html',
+        },
+      ]);
+    config
+      .plugin('page')
+      .use(HtmlWebpackPlugin, [
+        {
+          inject: false,
+          templateParameters: {
+          },
+          template: require.resolve('./public/page.html'),
+          filename: 'page.html',
         },
       ]);
 

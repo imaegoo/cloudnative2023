@@ -15,6 +15,7 @@ import DefaultSettersRegistryPlugin from './plugins/plugin-default-setters-regis
 import LoadIncrementalAssetsWidgetPlugin from './plugins/plugin-load-incremental-assets-widget';
 import SaveSamplePlugin from './plugins/plugin-save-sample';
 import PreviewSamplePlugin from './plugins/plugin-preview-sample';
+import PublishPagePlugin from './plugins/plugin-publish-page';
 import CustomSetterSamplePlugin from './plugins/plugin-custom-setter-sample';
 import SetRefPropPlugin from '@alilc/lowcode-plugin-set-ref-prop';
 import LogoSamplePlugin from './plugins/plugin-logo-sample';
@@ -91,6 +92,8 @@ async function registerPlugins() {
   await plugins.register(SaveSamplePlugin);
 
   await plugins.register(PreviewSamplePlugin);
+
+  await plugins.register(PublishPagePlugin);
 
   await plugins.register(CustomSetterSamplePlugin);
 
