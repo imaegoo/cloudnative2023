@@ -6,8 +6,9 @@ import isArray from 'lodash/isArray';
 import { buildComponents, assetBundle, AssetLevel, AssetLoader } from '@alilc/lowcode-utils';
 import ReactRenderer from '@alilc/lowcode-react-renderer';
 import { injectComponents } from '@alilc/lowcode-plugin-inject';
+import axios from 'axios';
 import appHelper from './appHelper';
-import { getProjectSchemaFromLocalStorage, getPackagesFromLocalStorage, getPreviewLocale, setPreviewLocale } from './services/mockService';
+import { getPreviewLocale, setPreviewLocale } from './services/mockService';
 
 const getScenarioName = function () {
   if (location.search) {
@@ -16,19 +17,28 @@ const getScenarioName = function () {
   return 'general';
 }
 
-const SamplePreview = () => {
+const PageContainer = () => {
   const [data, setData] = useState({});
 
   async function init() {
     const scenarioName = getScenarioName();
-    const packages = getPackagesFromLocalStorage(scenarioName);
-    const projectSchema = getProjectSchemaFromLocalStorage(scenarioName);
+    // TODO: 等后端部署好以后这里改成后端地址
+    const res = await axios.request({
+      url: '/api/page/get',
+      params: {
+        id: scenarioName
+      }
+    });
+    const { title, content } = res.data;
+    const { schema, packages } = JSON.parse(content);
+    document.head.title = title;
+
     const {
       componentsMap: componentsMapArray,
       componentsTree,
       i18n,
       dataSource: projectDataSource,
-    } = projectSchema;
+    } = schema;
     const componentsMap: any = {};
     componentsMapArray.forEach((component: any) => {
       componentsMap[component.componentName] = component;
@@ -98,4 +108,4 @@ const SamplePreview = () => {
   );
 };
 
-ReactDOM.render(<SamplePreview />, document.getElementById('ice-container'));
+ReactDOM.render(<PageContainer />, document.getElementById('ice-container'));

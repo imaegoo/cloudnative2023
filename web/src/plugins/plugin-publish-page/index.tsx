@@ -25,6 +25,7 @@ class SkeletonContent extends React.Component {
       this.setState({ loading: true });
       try {
         const data = {
+          pageId: '',
           title: this.state.title,
           content: JSON.stringify({
             schema: project.exportSchema(IPublicEnumTransformStage.Save),
@@ -34,7 +35,7 @@ class SkeletonContent extends React.Component {
         // TODO: 等后端部署好以后这里改成后端地址
         const res = await axios.request({
           method: 'post',
-          url: '/api/publish',
+          url: '/api/page/publish',
           data
         });
         if (res) {

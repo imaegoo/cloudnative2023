@@ -10,7 +10,9 @@
 
 （介绍软件的技术架构和特点，包括软件的操作系统、运行环境、编程语言、数据存储方式等方面）
 
-![](./img/architecture.png)
+![](./img/architecture-2.png)
+
+![](./img/architecture-3.png)
 
 操作系统: Alpine Linux 容器
 
@@ -33,3 +35,54 @@
 （附上SAE控制台地址，或者一段演示视频，展示作品提供的能力、设计思路、优势亮点等。视频不求形式，讲述清楚即可。）
 
 demo 地址: http://116.62.191.17:8080
+
+# 详细设计
+
+1. 用户登录页：包含用户名、密码输入框、登录按钮
+2. 网页设计页：包含低代码设计器模块、发布按钮
+3. 发布弹窗：包含自定义三级域名输入框，确认按钮、取消按钮
+    1. 用户可在地址输入框中输入自定义三级域名，点击确认，网页将发布在 `http://三级域名.lowcode.imaegoo.com:8080`
+    2. 用户发布时，如果三级域名未被使用，则创建这个网页，如果三局域名已被使用，则更新这个网页
+    2. 用户只能将网页发布到自己的三级域名或无人使用的三级域名上，发布到别人的三级域名将会报错
+4. 访客访问三级域名时，将从数据库动态请求该页面内容，在浏览器中渲染展示
+
+# 数据库表结构设计
+
+`lowcode_pages`
+
+- id INT 自增主键
+- pageId VARCHAR 50
+- title VARCHAR 300
+- content LONGTEXT
+- createdUser INT 外键
+- createdTime TIMESTAMP
+- updatedTime TIMESTAMP
+- isDeleted INT 1
+
+`lowcode_users`
+
+- id INT 自增主键
+- username VARCHAR 100
+- password VARCHAR 100
+- email VARCHAR 100
+- createdTime TIMESTAMP
+- updatedTime TIMESTAMP
+- isDeleted INT 1
+
+# API
+
+POST `/api/user/login`
+
+- 参数：username, password
+- 返回：set-cookie header
+
+POST `/api/page/publish`
+
+- 仅限登录用户调用
+- 参数：pageId, title, content
+- 返回：success
+
+GET `/api/page/get`
+
+- 参数：pageId
+- 返回：title, content
