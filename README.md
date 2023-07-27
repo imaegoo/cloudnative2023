@@ -42,7 +42,7 @@ demo 地址: http://lowcode.imaegoo.com:8080
 2. 网页设计页：包含低代码设计器模块、发布按钮
 3. 发布弹窗：包含自定义三级域名输入框，确认按钮、取消按钮
     1. 用户可在地址输入框中输入自定义三级域名，点击确认，网页将发布在 `http://三级域名.lowcode.imaegoo.com:8080`
-    2. 用户发布时，如果三级域名未被使用，则创建这个网页，如果三局域名已被使用，则更新这个网页
+    2. 用户发布时，如果三级域名未被使用，则创建这个网页，如果三级域名已被使用，则更新这个网页
     2. 用户只能将网页发布到自己的三级域名或无人使用的三级域名上，发布到别人的三级域名将会报错
 4. 访客访问三级域名时，将从数据库动态请求该页面内容，在浏览器中渲染展示
 
@@ -54,7 +54,7 @@ demo 地址: http://lowcode.imaegoo.com:8080
 - pageId VARCHAR 50
 - title VARCHAR 300
 - content LONGTEXT
-- createdUser INT 外键
+- createdUser INT 仅关联 users 表的 id，不创建外键
 - createdTime TIMESTAMP
 - updatedTime TIMESTAMP
 - isDeleted INT 1
