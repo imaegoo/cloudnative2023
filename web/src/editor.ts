@@ -22,7 +22,7 @@ import LogoSamplePlugin from './plugins/plugin-logo-sample';
 import SimulatorLocalePlugin from './plugins/plugin-simulator-locale';
 import lowcodePlugin from './plugins/plugin-lowcode-component';
 import appHelper from './appHelper';
-import './global.scss';
+import './styles/editor.scss';
 
 async function registerPlugins() {
   await plugins.register(InjectPlugin);

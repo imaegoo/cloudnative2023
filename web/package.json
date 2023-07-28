@@ -1,8 +1,8 @@
 {
-  "name": "@alilc/lowcode-demo-general",
+  "name": "@imaegoo/cloudnative2023",
   "version": "1.0.28",
   "description": "Low-Code Engine 低代码搭建引擎 Demo 项目 - 综合场景",
-  "repository": "git@github.com:alibaba/lowcode-demo.git",
+  "repository": "git@github.com:imaegoo/cloudnative2023.git",
   "license": "MIT",
   "main": "index.js",
   "scripts": {

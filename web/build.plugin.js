@@ -23,11 +23,9 @@ module.exports = ({ onGetWebpackConfig }) => {
       .use(HtmlWebpackPlugin, [
         {
           inject: false,
-          minify: false,
           templateParameters: {
-            version,
           },
-          template: require.resolve('./public/index.ejs'),
+          template: require.resolve('./public/index.html'),
           filename: 'index.html',
         },
       ]);
@@ -43,17 +41,29 @@ module.exports = ({ onGetWebpackConfig }) => {
         },
       ]);
     config
-      .plugin('page')
+      .plugin('login')
       .use(HtmlWebpackPlugin, [
         {
           inject: false,
           templateParameters: {
           },
-          template: require.resolve('./public/page.html'),
-          filename: 'page.html',
+          template: require.resolve('./public/login.html'),
+          filename: 'login.html',
         },
       ]);
-
+    config
+      .plugin('editor')
+      .use(HtmlWebpackPlugin, [
+        {
+          inject: false,
+          minify: false,
+          templateParameters: {
+            version,
+          },
+          template: require.resolve('./public/editor.ejs'),
+          filename: 'editor.html',
+        },
+      ]);
     config.plugins.delete('hot');
     config.devServer.hot(false);
 

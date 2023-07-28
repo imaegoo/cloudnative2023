@@ -5,50 +5,51 @@ import { Button, Dialog, Form, Input, Message } from '@alifd/next';
 import * as React from 'react';
 import axios from 'axios';
 
-const FormItem = Form.Item;
-
 class SkeletonContent extends React.Component {
-  constructor(...args) {
-    super(...args);
-    this.state = {
+  state = {
+    pageId: '',
+    title: '',
+    visible: false,
+    loading: false,
+  };
+  onOpen = () => {
+    this.setState({ visible: true });
+  };
+  onClose = () => {
+    this.setState({
+      pageId: '',
       title: '',
       visible: false,
-      loading: false
-    };
-    this.onOpen = () => {
-      this.setState({ visible: true });
-    };
-    this.onClose = () => {
-      this.setState({ visible: false });
-    };
-    this.doPublish = async () => {
-      this.setState({ loading: true });
-      try {
-        const data = {
-          pageId: '',
-          title: this.state.title,
-          content: JSON.stringify({
-            schema: project.exportSchema(IPublicEnumTransformStage.Save),
-            packages: await filterPackages(material.getAssets()?.packages)
-          })
-        };
-        // TODO: 等后端部署好以后这里改成后端地址
-        const res = await axios.request({
-          method: 'post',
-          url: '/api/page/publish',
-          data
-        });
-        if (res) {
-          this.onClose();
-        }
-      } catch (e: any) {
-        console.error(e);
-        Message.error(e.message);
-      } finally {
-        this.setState({ loading: false });
+      loading: false,
+    });
+  };
+  doPublish = async () => {
+    this.setState({ loading: true });
+    try {
+      const data = {
+        pageId: this.state.pageId,
+        title: this.state.title,
+        content: JSON.stringify({
+          schema: project.exportSchema(IPublicEnumTransformStage.Save),
+          packages: await filterPackages(material.getAssets()?.packages),
+        }),
+      };
+      // TODO: 等后端部署好以后这里改成后端地址
+      const res = await axios.request({
+        method: 'post',
+        url: '/api/page/publish',
+        data,
+      });
+      if (res) {
+        this.onClose();
       }
-    };
-  }
+    } catch (e: any) {
+      console.error(e);
+      Message.error(e.message);
+    } finally {
+      this.setState({ loading: false });
+    }
+  };
   render() {
     return (
       <>
@@ -60,17 +61,32 @@ class SkeletonContent extends React.Component {
           title="发布"
           visible={this.state.visible}
           onOk={this.doPublish}
-          okProps={{ loading: this.state.loading }}
+          okProps={{
+            loading: this.state.loading,
+            disabled: !this.state.pageId || !this.state.title,
+          }}
           onCancel={this.onClose}
           onClose={this.onClose}
         >
-          <Form style={{width: "300px"}}>
-            <FormItem
-              name="title"
-              label="标题"
-            >
-              <Input value={this.state.title} onChange={e => this.setState({ title: e })} />
-            </FormItem>
+          <p>
+            <ol>
+              <li>1. 请填写三级域名以发布网页到互联网。</li>
+              <li>2. 同一域名重复发布将会覆盖之前发布的内容。</li>
+              <li>3. 无法使用已被他人使用的域名。</li>
+            </ol>
+          </p>
+          <Form style={{ width: '500px' }}>
+            <Form.Item name="pageId" label="三级域名" required>
+              <Input
+                value={this.state.pageId}
+                onChange={(e) => this.setState({ pageId: e })}
+                addonTextBefore="http://"
+                addonTextAfter=".lowcode.imaegoo.com:8080"
+              />
+            </Form.Item>
+            <Form.Item name="title" label="网页标题" required>
+              <Input value={this.state.title} onChange={(e) => this.setState({ title: e })} />
+            </Form.Item>
           </Form>
         </Dialog>
       </>
@@ -78,7 +94,6 @@ class SkeletonContent extends React.Component {
   }
 }
 
-// 发布页面
 const PublishPagePlugin = (ctx: IPublicModelPluginContext) => {
   return {
     async init() {
@@ -94,7 +109,7 @@ const PublishPagePlugin = (ctx: IPublicModelPluginContext) => {
       });
     },
   };
-}
+};
 
 PublishPagePlugin.pluginName = 'PublishPagePlugin';
 PublishPagePlugin.meta = {

@@ -10,24 +10,19 @@ import axios from 'axios';
 import appHelper from './appHelper';
 import { getPreviewLocale, setPreviewLocale } from './services/mockService';
 
-const getScenarioName = function () {
-  if (location.search) {
-    return new URLSearchParams(location.search.slice(1)).get('scenarioName') || 'general';
-  }
-  return 'general';
+function getPageId() {
+  return window.location.hostname.split('.')[0];
 }
 
 const PageContainer = () => {
   const [data, setData] = useState({});
 
   async function init() {
-    const scenarioName = getScenarioName();
+    const pageId = getPageId();
     // TODO: 等后端部署好以后这里改成后端地址
     const res = await axios.request({
       url: '/api/page/get',
-      params: {
-        id: scenarioName
-      }
+      params: { pageId },
     });
     const { title, content } = res.data;
     const { schema, packages } = JSON.parse(content);
@@ -77,12 +72,13 @@ const PageContainer = () => {
     init();
     return <Loading fullScreen />;
   }
-  const currentLocale = getPreviewLocale(getScenarioName());
+  const currentLocale = getPreviewLocale(getPageId());
 
   if (!(window as any).setPreviewLocale) {
     // for demo use only, can use this in console to switch language for i18n test
     // 在控制台 window.setPreviewLocale('en-US') 或 window.setPreviewLocale('zh-CN') 查看切换效果
-    (window as any).setPreviewLocale = (locale:string) => setPreviewLocale(getScenarioName(), locale);
+    (window as any).setPreviewLocale = (locale: string) =>
+      setPreviewLocale(getPageId(), locale);
   }
 
   function customizer(objValue: [], srcValue: []) {
@@ -108,4 +104,18 @@ const PageContainer = () => {
   );
 };
 
-ReactDOM.render(<PageContainer />, document.getElementById('ice-container'));
+/**
+ * 根据用户访问的域名来判断是进入网页设计器还是发布的网页
+ * 举例：
+ * 用户访问 http://lowcode.imaegoo.com:8080/ 就进入网页设计器
+ * 用户访问 http://mypage.lowcode.imaegoo.com:8080/ 就进入 pageId 为 mypage 的网页
+ */
+function isInViewMode() {
+  return getPageId() !== 'lowcode';
+}
+
+if (isInViewMode()) {
+  ReactDOM.render(<PageContainer />, document.getElementById('ice-container'));
+} else {
+  window.location.href = 'editor.html';
+}

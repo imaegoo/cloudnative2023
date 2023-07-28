@@ -1,7 +1,9 @@
 {
   "entry": {
+    "index": "./src/index.tsx",
     "preview": "./src/preview.tsx",
-    "index": "./src/index.ts"
+    "login": "./src/login.tsx",
+    "editor": "./src/editor.ts"
   },
   "vendor": false,
   "devServer": {
