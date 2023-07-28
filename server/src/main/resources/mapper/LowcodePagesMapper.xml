@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nineya.springboot.mapper.LowcodePagesMapper">
+    <!-- application.yml中type-aliases-package:未配置则需要用全名-->
+    <select id="queryById" resultType="com.nineya.springboot.entity.LowcodePages">
+        SELECT * FROM lowcode_pages where id=#{id}
+    </select>
+
+    <insert id="insertSelective" parameterType="com.nineya.springboot.entity.LowcodePages">
+        insert into lowcode_pages
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">
+                id,
+            </if>
+            <if test="pageId != null and pageId != ''">
+                page_id,
+            </if>
+            <if test="title != null and title != ''">
+                title,
+            </if>
+            <if test="content != null and content != ''">
+                content,
+            </if>
+            <if test="createdUser != null and createdUser != ''">
+                created_user,
+            </if>
+            <if test="createdTime != null">
+                created_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="isdeleted != null and isdeleted != ''">
+                isdeleted,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">
+                #{id,jdbcType=NUMBERIC},
+            </if>
+            <if test="pageId != null and pageId != ''">
+                #{pageId,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null and title != ''">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null and content != ''">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="createdUser != null and createdUser != ''">
+                #{createdUser,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null ">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isdeleted != null and isdeleted != ''">
+                #{isdeleted,jdbcType=NUMBERIC},
+            </if>
+        </trim>
+    </insert>
+</mapper>
