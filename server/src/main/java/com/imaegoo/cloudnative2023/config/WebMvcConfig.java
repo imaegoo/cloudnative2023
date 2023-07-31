@@ -1,4 +1,4 @@
-package com.imaegoo.cloudnative2023;
+package com.imaegoo.cloudnative2023.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

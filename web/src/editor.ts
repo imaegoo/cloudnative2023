@@ -1,13 +1,13 @@
 import { init, plugins } from '@alilc/lowcode-engine';
-import { createFetchHandler } from '@alilc/lowcode-datasource-fetch-handler'
+import { createFetchHandler } from '@alilc/lowcode-datasource-fetch-handler';
 import EditorInitPlugin from './plugins/plugin-editor-init';
 import UndoRedoPlugin from '@alilc/lowcode-plugin-undo-redo';
 import ZhEnPlugin from '@alilc/lowcode-plugin-zh-en';
 import CodeGenPlugin from '@alilc/lowcode-plugin-code-generator';
 import DataSourcePanePlugin from '@alilc/lowcode-plugin-datasource-pane';
 import SchemaPlugin from '@alilc/lowcode-plugin-schema';
-import CodeEditorPlugin from "@alilc/lowcode-plugin-code-editor";
-import ManualPlugin from "@alilc/lowcode-plugin-manual";
+import CodeEditorPlugin from '@alilc/lowcode-plugin-code-editor';
+import ManualPlugin from '@alilc/lowcode-plugin-manual';
 import InjectPlugin from '@alilc/lowcode-plugin-inject';
 import SimulatorResizerPlugin from '@alilc/lowcode-plugin-simulator-select';
 import ComponentPanelPlugin from '@alilc/lowcode-plugin-components-pane';
@@ -23,6 +23,7 @@ import SimulatorLocalePlugin from './plugins/plugin-simulator-locale';
 import lowcodePlugin from './plugins/plugin-lowcode-component';
 import appHelper from './appHelper';
 import './styles/editor.scss';
+import { checkLoginStatus } from './utils';
 
 async function registerPlugins() {
   await plugins.register(InjectPlugin);
@@ -42,8 +43,9 @@ async function registerPlugins() {
         },
         {
           key: 'fusion 物料',
-          value: 'https://github.com/alibaba/lowcode-materials/tree/main/packages/fusion-lowcode-materials',
-        }
+          value:
+            'https://github.com/alibaba/lowcode-materials/tree/main/packages/fusion-lowcode-materials',
+        },
       ],
     },
   });
@@ -80,8 +82,8 @@ async function registerPlugins() {
       },
       {
         type: 'jsonp',
-      }
-    ]
+      },
+    ],
   });
 
   await plugins.register(CodeEditorPlugin);
@@ -101,9 +103,14 @@ async function registerPlugins() {
   await plugins.register(SimulatorLocalePlugin);
 
   await plugins.register(lowcodePlugin);
-};
+}
 
 (async function main() {
+  if (!(await checkLoginStatus())) {
+    window.location.href = 'login.html';
+    return;
+  }
+
   await registerPlugins();
 
   init(document.getElementById('lce-container')!, {

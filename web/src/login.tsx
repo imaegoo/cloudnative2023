@@ -4,6 +4,7 @@ import { Form, Input, Message } from '@alifd/next';
 import axios from 'axios';
 import './styles/login.scss';
 import { serverUrl } from './utils/constants';
+import { checkLoginStatus } from './utils';
 
 const formItemLayout = {
   labelCol: { fixedSpan: 3 },
@@ -30,6 +31,12 @@ class PageContainer extends React.Component {
   };
 
   render() {
+    checkLoginStatus().then((isLogin) => {
+      if (isLogin) {
+        window.location.href = 'editor.html';
+      }
+    });
+
     return (
       <>
         <img src="img/logo.png" width={70}></img>
