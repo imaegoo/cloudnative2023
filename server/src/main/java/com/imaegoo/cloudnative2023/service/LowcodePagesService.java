@@ -1,8 +1,6 @@
-package com.nineya.springboot.service;
+package com.imaegoo.cloudnative2023.service;
 
-import com.nineya.springboot.entity.LowcodePages;
-
-import java.util.List;
+import com.imaegoo.cloudnative2023.entity.LowcodePages;
 
 /**
  * 项目名称：springboot
@@ -13,6 +11,7 @@ import java.util.List;
  */
 
 public interface LowcodePagesService {
-    LowcodePages queryById(String id);
+    LowcodePages queryByPageId(String pageId);
+
     int insertSelective(LowcodePages lowcodePages);
 }

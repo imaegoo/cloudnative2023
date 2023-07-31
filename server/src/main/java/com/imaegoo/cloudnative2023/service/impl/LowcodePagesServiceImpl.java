@@ -1,23 +1,15 @@
-package com.nineya.springboot.service.impl;
+package com.imaegoo.cloudnative2023.service.impl;
 
-import com.nineya.springboot.entity.LowcodePages;
-import com.nineya.springboot.mapper.LowcodePagesMapper;
-import com.nineya.springboot.service.LowcodePagesService;
+import com.imaegoo.cloudnative2023.entity.LowcodePages;
+import com.imaegoo.cloudnative2023.mapper.LowcodePagesMapper;
+import com.imaegoo.cloudnative2023.service.LowcodePagesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 
 /**
  * 项目名称：springboot
@@ -31,12 +23,12 @@ public class LowcodePagesServiceImpl implements LowcodePagesService {
     @Autowired
     private LowcodePagesMapper lowcodePagesMapper;
 
-    private Logger log = LoggerFactory.getLogger(this.getClass());
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public LowcodePages queryById(String id){
+    public LowcodePages queryByPageId(String pageId) {
 
-        LowcodePages result = lowcodePagesMapper.queryById(id);
+        LowcodePages result = lowcodePagesMapper.queryByPageId(pageId);
         return result;
     }
 
@@ -45,9 +37,6 @@ public class LowcodePagesServiceImpl implements LowcodePagesService {
         Date currentDate = new Date();
         Timestamp timestamp = new Timestamp(currentDate.getTime());
         lowcodePages.setCreatedTime(timestamp);
-        log.info(timestamp.toString());
-        lowcodePages.setPageId(UUID.randomUUID().toString());
-        int result = lowcodePagesMapper.insertSelective(lowcodePages);
-        return 0;
+        return lowcodePagesMapper.insertSelective(lowcodePages);
     }
 }

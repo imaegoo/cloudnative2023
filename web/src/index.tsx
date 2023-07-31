@@ -9,6 +9,7 @@ import { injectComponents } from '@alilc/lowcode-plugin-inject';
 import axios from 'axios';
 import appHelper from './appHelper';
 import { getPreviewLocale, setPreviewLocale } from './services/mockService';
+import { serverUrl } from './utils/constants';
 
 function getPageId() {
   return window.location.hostname.split('.')[0];
@@ -19,8 +20,8 @@ const PageContainer = () => {
 
   async function init() {
     const pageId = getPageId();
-    // TODO: 等后端部署好以后这里改成后端地址
     const res = await axios.request({
+      baseURL: serverUrl,
       url: '/api/page/get',
       params: { pageId },
     });

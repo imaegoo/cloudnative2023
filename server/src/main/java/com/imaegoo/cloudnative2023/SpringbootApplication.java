@@ -1,10 +1,10 @@
-package com.nineya.springboot;
+package com.imaegoo.cloudnative2023;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@MapperScan("com.nineya.springboot.mapper")//使用MapperScan批量扫描所有的Mapper接口
+@MapperScan("com.imaegoo.cloudnative2023.mapper")//使用MapperScan批量扫描所有的Mapper接口
 @SpringBootApplication
 public class SpringbootApplication {
 

@@ -1,7 +1,6 @@
-package com.nineya.springboot.service;
+package com.imaegoo.cloudnative2023.service;
 
-import com.nineya.springboot.entity.LowcodeUser;
-import org.apache.ibatis.annotations.Param;
+import com.imaegoo.cloudnative2023.entity.LowcodeUser;
 
 /**
  * 项目名称：springboot
@@ -13,5 +12,6 @@ import org.apache.ibatis.annotations.Param;
 
 public interface LowcodeUserService {
     LowcodeUser queryByUsername(String username);
+
     int insert(LowcodeUser lowcodeUser);
 }

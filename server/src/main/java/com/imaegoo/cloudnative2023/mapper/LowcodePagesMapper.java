@@ -1,9 +1,7 @@
-package com.nineya.springboot.mapper;
+package com.imaegoo.cloudnative2023.mapper;
 
-import com.nineya.springboot.entity.LowcodePages;
+import com.imaegoo.cloudnative2023.entity.LowcodePages;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 /**
  * 项目名称：springboot
@@ -14,6 +12,7 @@ import java.util.List;
  */
 
 public interface LowcodePagesMapper {
-    LowcodePages queryById(@Param("id") String id);
+    LowcodePages queryByPageId(@Param("pageId") String pageId);
+
     int insertSelective(LowcodePages lowcodePages);
 }

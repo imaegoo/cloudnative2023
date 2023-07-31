@@ -1,6 +1,5 @@
-package com.nineya.springboot.entity;
+package com.imaegoo.cloudnative2023.entity;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
@@ -13,16 +12,12 @@ import java.sql.Timestamp;
 
 public class LowcodeUser {
     private int id;
-
     private String username;
-
     private String password;
-
     private String email;
-
     private Timestamp createdTime;
-    private Timestamp updateTime;
-    private int isdeleted;
+    private Timestamp updatedTime;
+    private int isDeleted;
 
     public int getId() {
         return id;
@@ -64,19 +59,19 @@ public class LowcodeUser {
         this.createdTime = createdTime;
     }
 
-    public Timestamp getUpdateTime() {
-        return updateTime;
+    public Timestamp getUpdatedTime() {
+        return updatedTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
+    public void setUpdatedTime(Timestamp updatedTime) {
+        this.updatedTime = updatedTime;
     }
 
-    public int getIsdeleted() {
-        return isdeleted;
+    public int getIsDeleted() {
+        return isDeleted;
     }
 
-    public void setIsdeleted(int isdeleted) {
-        this.isdeleted = isdeleted;
+    public void setIsDeleted(int isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }

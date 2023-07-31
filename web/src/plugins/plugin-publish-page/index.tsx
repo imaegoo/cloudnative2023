@@ -4,6 +4,7 @@ import { filterPackages } from '@alilc/lowcode-plugin-inject';
 import { Button, Dialog, Form, Input, Message } from '@alifd/next';
 import * as React from 'react';
 import axios from 'axios';
+import { serverUrl } from 'src/utils/constants';
 
 class SkeletonContent extends React.Component {
   state = {
@@ -34,9 +35,9 @@ class SkeletonContent extends React.Component {
           packages: await filterPackages(material.getAssets()?.packages),
         }),
       };
-      // TODO: 等后端部署好以后这里改成后端地址
       const res = await axios.request({
         method: 'post',
+        baseURL: serverUrl,
         url: '/api/page/publish',
         data,
       });

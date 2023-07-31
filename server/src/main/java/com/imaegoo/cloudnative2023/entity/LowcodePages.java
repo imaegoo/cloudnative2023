@@ -1,7 +1,5 @@
-package com.nineya.springboot.entity;
+package com.imaegoo.cloudnative2023.entity;
 
-import java.sql.Blob;
-import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
@@ -17,10 +15,10 @@ public class LowcodePages {
     private String pageId;
     private String title;
     private String content;
-    private String createdUser;
+    private int createdUser;
     private Timestamp createdTime;
-    private Timestamp updateTime;
-    private int isdeleted;
+    private Timestamp updatedTime;
+    private int isDeleted;
 
     public int getId() {
         return id;
@@ -54,11 +52,11 @@ public class LowcodePages {
         this.content = content;
     }
 
-    public String getCreatedUser() {
+    public int getCreatedUser() {
         return createdUser;
     }
 
-    public void setCreatedUser(String createdUser) {
+    public void setCreatedUser(int createdUser) {
         this.createdUser = createdUser;
     }
 
@@ -70,19 +68,19 @@ public class LowcodePages {
         this.createdTime = createdTime;
     }
 
-    public Timestamp getUpdateTime() {
-        return updateTime;
+    public Timestamp getUpdatedTime() {
+        return updatedTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
+    public void setUpdatedTime(Timestamp updatedTime) {
+        this.updatedTime = updatedTime;
     }
 
     public int getIsdeleted() {
-        return isdeleted;
+        return isDeleted;
     }
 
-    public void setIsdeleted(int isdeleted) {
-        this.isdeleted = isdeleted;
+    public void setIsdeleted(int isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }

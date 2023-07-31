@@ -1,8 +1,8 @@
-package com.nineya.springboot.service.impl;
+package com.imaegoo.cloudnative2023.service.impl;
 
-import com.nineya.springboot.entity.LowcodeUser;
-import com.nineya.springboot.mapper.LowcodeUserMapper;
-import com.nineya.springboot.service.LowcodeUserService;
+import com.imaegoo.cloudnative2023.entity.LowcodeUser;
+import com.imaegoo.cloudnative2023.mapper.LowcodeUserMapper;
+import com.imaegoo.cloudnative2023.service.LowcodeUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +21,7 @@ public class LowcodeUserServiceImpl implements LowcodeUserService {
 
     @Autowired
     private LowcodeUserMapper lowcodeUserMapper;
+
     @Override
     public LowcodeUser queryByUsername(String username) {
         LowcodeUser lowcodeUser = lowcodeUserMapper.queryByUsername(username);

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Form, Input, Message } from '@alifd/next';
 import axios from 'axios';
 import './styles/login.scss';
+import { serverUrl } from './utils/constants';
 
 const formItemLayout = {
   labelCol: { fixedSpan: 3 },
@@ -15,6 +16,8 @@ class PageContainer extends React.Component {
     if (errors) return;
     try {
       const res = await axios.request({
+        method: 'post',
+        baseURL: serverUrl,
         url: '/api/user/login',
         data: values,
       });

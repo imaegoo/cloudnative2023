@@ -1,4 +1,4 @@
-package com.nineya.springboot.DTO;
+package com.imaegoo.cloudnative2023.DTO;
 
 import com.github.pagehelper.Page;
 
@@ -22,7 +22,8 @@ public class ResultDto<T> {
 
     private Map map = new HashMap(); //动态数据
 
-    public ResultDto(){};
+    public ResultDto() {
+    }
 
     public static <T> ResultDto<T> success(T object) {
         ResultDto<T> r = new ResultDto<T>();
@@ -42,15 +43,16 @@ public class ResultDto<T> {
         this.map.put(key, value);
         return this;
     }
-    public ResultDto(T data){
-        if(data instanceof Page){
-            Page<?> page = (Page)data;
+
+    public ResultDto(T data) {
+        if (data instanceof Page) {
+            Page<?> page = (Page) data;
             this.total = page.getTotal();
         }
         this.data = data;
     }
 
-    public ResultDto(long total, T data){
+    public ResultDto(long total, T data) {
         this.total = total;
         this.data = data;
     }

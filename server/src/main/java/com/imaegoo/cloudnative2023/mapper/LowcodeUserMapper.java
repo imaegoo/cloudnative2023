@@ -1,6 +1,6 @@
-package com.nineya.springboot.mapper;
+package com.imaegoo.cloudnative2023.mapper;
 
-import com.nineya.springboot.entity.LowcodeUser;
+import com.imaegoo.cloudnative2023.entity.LowcodeUser;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -13,5 +13,6 @@ import org.apache.ibatis.annotations.Param;
 
 public interface LowcodeUserMapper {
     LowcodeUser queryByUsername(@Param("username") String username);
+
     int insert(LowcodeUser lowcodeUser);
 }
