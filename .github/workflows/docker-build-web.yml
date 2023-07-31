@@ -14,4 +14,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker login --username=mail1st@qq.com --password ${{secrets.ali_acr_token}} registry.cn-hangzhou.aliyuncs.com && bash ./docker-build-server.sh && bash ./docker-build-web.sh
+      run: docker login --username=mail1st@qq.com --password ${{secrets.ali_acr_token}} registry.cn-hangzhou.aliyuncs.com && bash ./docker-build-web.sh
