@@ -111,18 +111,4 @@ const PageContainer = () => {
   );
 };
 
-/**
- * 根据用户访问的域名来判断是进入网页设计器还是发布的网页
- * 举例：
- * 用户访问 http://lowcode.imaegoo.com:8080/ 就进入网页设计器
- * 用户访问 http://mypage.lowcode.imaegoo.com:8080/ 就进入 pageId 为 mypage 的网页
- */
-function isInViewMode() {
-  return getPageId() !== 'lowcode';
-}
-
-if (isInViewMode()) {
-  ReactDOM.render(<PageContainer />, document.getElementById('ice-container'));
-} else {
-  window.location.href = 'editor.html';
-}
+ReactDOM.render(<PageContainer />, document.getElementById('ice-container'));
