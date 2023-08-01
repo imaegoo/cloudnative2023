@@ -49,7 +49,7 @@ public class LowcodeUserController {
             return ResultDto.error("密码错误");
         }
         //  ⑤. 查看员工状态，如果为已禁用状态，则返回员工已禁用结果
-        if (queryuser.getIsDeleted() == 0) {
+        if (queryuser.getIsDeleted() == 1) {
             return ResultDto.error("账户已禁用");
         }
         //  ⑥. 登录成功，将员工id存入Session, 并返回登录成功结果

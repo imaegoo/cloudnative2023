@@ -40,6 +40,7 @@ class SkeletonContent extends React.Component {
         baseURL: serverUrl,
         url: '/api/page/publish',
         data,
+        withCredentials: true,
       });
       if (res) {
         this.onClose();

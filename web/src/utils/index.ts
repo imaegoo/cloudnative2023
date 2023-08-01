@@ -6,6 +6,7 @@ export async function checkLoginStatus() {
     const res = await axios.request({
       baseURL: serverUrl,
       url: '/api/user/me',
+      withCredentials: true,
     });
     if (res?.data?.data) {
       return true;

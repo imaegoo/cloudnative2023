@@ -3,7 +3,7 @@
 <mapper namespace="com.imaegoo.cloudnative2023.mapper.LowcodePagesMapper">
     <!-- application.yml中type-aliases-package:未配置则需要用全名-->
     <select id="queryByPageId" resultType="com.imaegoo.cloudnative2023.entity.LowcodePages">
-        SELECT * FROM lowcode_pages where pageId=#{pageId}
+        SELECT * FROM lowcode_pages where page_id=#{pageId}
     </select>
 
     <insert id="insertSelective" parameterType="com.imaegoo.cloudnative2023.entity.LowcodePages">

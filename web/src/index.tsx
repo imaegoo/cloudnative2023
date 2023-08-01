@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import React, { useState } from 'react';
-import { Loading } from '@alifd/next';
+import { Loading, Message } from '@alifd/next';
 import mergeWith from 'lodash/mergeWith';
 import isArray from 'lodash/isArray';
 import { buildComponents, assetBundle, AssetLevel, AssetLoader } from '@alilc/lowcode-utils';
@@ -24,8 +24,12 @@ const PageContainer = () => {
       baseURL: serverUrl,
       url: '/api/page/get',
       params: { pageId },
+      withCredentials: true,
     });
-    const { title, content } = res.data;
+    if (!res.data?.data) {
+      Message.error('404 找不到网页');
+    }
+    const { title, content } = res.data.data;
     const { schema, packages } = JSON.parse(content);
     document.head.title = title;
 
@@ -70,7 +74,10 @@ const PageContainer = () => {
   const { schema, components, i18n = {}, projectDataSource = {} } = data as any;
 
   if (!schema || !components) {
-    init();
+    init().catch((e) => {
+      console.error(e);
+      Message.error(e.message);
+    });
     return <Loading fullScreen />;
   }
   const currentLocale = getPreviewLocale(getPageId());
@@ -78,8 +85,7 @@ const PageContainer = () => {
   if (!(window as any).setPreviewLocale) {
     // for demo use only, can use this in console to switch language for i18n test
     // 在控制台 window.setPreviewLocale('en-US') 或 window.setPreviewLocale('zh-CN') 查看切换效果
-    (window as any).setPreviewLocale = (locale: string) =>
-      setPreviewLocale(getPageId(), locale);
+    (window as any).setPreviewLocale = (locale: string) => setPreviewLocale(getPageId(), locale);
   }
 
   function customizer(objValue: [], srcValue: []) {

@@ -21,9 +21,13 @@ class PageContainer extends React.Component {
         baseURL: serverUrl,
         url: '/api/user/login',
         data: values,
+        withCredentials: true,
       });
-      console.log(res);
-      window.location.href = 'editor.html';
+      if (res.data?.data) {
+        window.location.href = 'editor.html';
+      } else {
+        Message.error(res.data?.message || '登录失败');
+      }
     } catch (e: any) {
       console.error(e);
       Message.error(e.message);
