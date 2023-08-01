@@ -1,4 +1,4 @@
 #!/bin/sh
 
-docker build -f Dockerfile.server -t registry.cn-hangzhou.aliyuncs.com/imaegoo/cloudnative2023server:latest .
-docker push registry.cn-hangzhou.aliyuncs.com/imaegoo/cloudnative2023server:latest
+docker build -f Dockerfile.server -t registry.cn-hangzhou.aliyuncs.com/imaegoo/cloudnative2023server:0.1.1 .
+docker push registry.cn-hangzhou.aliyuncs.com/imaegoo/cloudnative2023server:0.1.1
