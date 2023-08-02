@@ -1,4 +1,4 @@
-FROM maven:3-eclipse-temurin-8-alpine as builder
+FROM ghcr.io/graalvm/graalvm-community:17.0.8 as builder
 
 ADD ./server/ /root/server/
 WORKDIR /root/server/
