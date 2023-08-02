@@ -4,8 +4,8 @@ ADD ./server/ /root/server/
 WORKDIR /root/server/
 RUN bash ./mvnw --batch-mode clean package -Pnative
 
-FROM eclipse-temurin:8-alpine
+FROM ubuntu:latest
 
 COPY --from=builder /root/server/target/cloudnative2023 /root/server/target/cloudnative2023
-ENTRYPOINT ["/root/server/target/cloudnative2023","-Djavax.xml.accessExternalDTD=all"]
+ENTRYPOINT ["/root/server/target/cloudnative2023", "-Djavax.xml.accessExternalDTD=all"]
 EXPOSE 8080
