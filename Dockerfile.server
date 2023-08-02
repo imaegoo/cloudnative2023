@@ -1,5 +1,12 @@
 FROM ghcr.io/graalvm/graalvm-community:17.0.8 as builder
 
+RUN wget https://dlcdn.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz
+RUN tar xzvf apache-maven-3.8.8-bin.tar.gz
+RUN cp -R apache-maven-3.8.8 /usr/local/bin
+RUN export PATH=apache-maven-3.8.8/bin:$PATH
+RUN export PATH=/usr/local/bin/apache-maven-3.8.8/bin:$PATH
+RUN ln -s /usr/local/bin/apache-maven-3.8.8/bin/mvn /usr/local/bin/mvn
+
 ADD ./server/ /root/server/
 WORKDIR /root/server/
 RUN mvn --batch-mode clean package
