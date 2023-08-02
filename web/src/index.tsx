@@ -31,7 +31,7 @@ const PageContainer = () => {
     }
     const { title, content } = res.data.data;
     const { schema, packages } = JSON.parse(content);
-    document.head.title = title;
+    document.title = title;
 
     const {
       componentsMap: componentsMapArray,
