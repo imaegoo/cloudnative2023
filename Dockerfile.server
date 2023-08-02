@@ -2,10 +2,11 @@ FROM ghcr.io/graalvm/graalvm-community:17.0.8 as builder
 
 ADD ./server/ /root/server/
 WORKDIR /root/server/
+RUN bash mvnw --batch-mode clean package -Pnative
 RUN bash ./mvnw --batch-mode clean package
 
 FROM eclipse-temurin:8-alpine
 
 COPY --from=builder /root/server/target/cloudnative2023-0.0.1-SNAPSHOT.jar /root/server/target/cloudnative2023-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java", "-jar", "/root/server/target/cloudnative2023-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["/root/server/target/cloudnative2023","-Djavax.xml.accessExternalDTD=all"]
 EXPOSE 8080

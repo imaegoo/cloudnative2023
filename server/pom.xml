@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0</version>
+        <version>3.1.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.imaegoo</groupId>
@@ -63,8 +63,16 @@
             <plugin>
                 <groupId>org.graalvm.buildtools</groupId>
                 <artifactId>native-maven-plugin</artifactId>
+                <configuration>
+                    <imageName>${project.artifactId}</imageName>
+                    <mainClass>com.imaegoo.cloudnative2023.CloudNativeApplication</mainClass>
+                    <buildArgs combine.children="append">
+                        <buildArg>--enable-url-protocols=http</buildArg> <!-- ★★★Need to specify★★★ -->
+                    </buildArgs>
+                </configuration>
                 <executions>
                     <execution>
+                        <id>build-native</id>
                         <phase>package</phase>
                         <goals>
                             <goal>compile-no-fork</goal>
