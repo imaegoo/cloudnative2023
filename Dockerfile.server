@@ -2,6 +2,8 @@ FROM ghcr.io/graalvm/jdk:ol8-java17-22.3.0 as builder
 
 ADD ./server/ /root/server/
 WORKDIR /root/server/
+RUN java -version
+RUN gu install
 RUN bash ./mvnw --batch-mode clean package -Pnative
 
 FROM eclipse-temurin:8-alpine
