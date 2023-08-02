@@ -1,8 +1,9 @@
-FROM ghcr.io/graalvm/jdk:ol8-java17-22.3.0 as builder
+FROM container-registry.oracle.com/graalvm/graalvm-community:17-ol9 as builder
 
 ADD ./server/ /root/server/
 WORKDIR /root/server/
 RUN java -version
+RUN echo $GRAALVM_HOME
 RUN gu install native-image
 RUN bash ./mvnw --batch-mode clean package -Pnative
 
