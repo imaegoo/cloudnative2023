@@ -1,4 +1,4 @@
-FROM ghcr.io/graalvm/jdk:ol8-java17-22.3.0 as builder
+FROM registry.oracle.com/graalvm/community:ol9-java17-22 as builder
 
 ADD ./server/ /root/server/
 WORKDIR /root/server/
