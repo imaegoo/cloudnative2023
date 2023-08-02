@@ -1,4 +1,4 @@
-FROM container-registry.oracle.com/graalvm/graalvm-community:17-ol9 as builder
+FROM ghcr.io/graalvm/jdk:ol8-java17-22.3.0 as builder
 
 ADD ./server/ /root/server/
 WORKDIR /root/server/
