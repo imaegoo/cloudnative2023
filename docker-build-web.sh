@@ -1,5 +1,5 @@
 #!/bin/sh
 
 set -eux
-docker build -f Dockerfile.web -t registry.cn-hangzhou.aliyuncs.com/imaegoo/cloudnative2023:0.1.9 .
-docker push registry.cn-hangzhou.aliyuncs.com/imaegoo/cloudnative2023:0.1.9
+docker build -f Dockerfile.web -t registry.cn-hangzhou.aliyuncs.com/imaegoo/cloudnative2023:0.1.10 .
+docker push registry.cn-hangzhou.aliyuncs.com/imaegoo/cloudnative2023:0.1.10
