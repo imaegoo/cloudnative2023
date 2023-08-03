@@ -7,5 +7,5 @@ RUN gu install native-image && bash ./mvnw --batch-mode clean package -Pnative
 FROM ubuntu:latest
 
 COPY --from=builder /root/server/target/cloudnative2023 /root/cloudnative2023
-ENTRYPOINT ["/root/cloudnative2023", "-Djavax.xml.accessExternalDTD=all"]
+ENTRYPOINT ["/root/cloudnative2023"]
 EXPOSE 8080
