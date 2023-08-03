@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @MapperScan(basePackages = "com.imaegoo.cloudnative2023.mapper", sqlSessionTemplateRef = "sqlSessionTemplate")
 //使用MapperScan批量扫描所有的Mapper接口
-@SpringBootApplication
+@SpringBootApplication(proxyBeanMethods = false)
 public class CloudNativeApplication {
 
     public static void main(String[] args) {
