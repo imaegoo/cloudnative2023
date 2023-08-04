@@ -35,7 +35,7 @@
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
             <if test="id != null and id != ''">
-                #{id,jdbcType=NUMBERIC},
+                #{id,jdbcType=NUMERIC},
             </if>
             <if test="username != null and username != ''">
                 #{username,jdbcType=VARCHAR},
@@ -53,7 +53,7 @@
                 #{updatedTime,jdbcType=TIMESTAMP},
             </if>
             <if test="isDeleted != null and isDeleted != ''">
-                #{isDeleted,jdbcType=NUMBERIC},
+                #{isDeleted,jdbcType=NUMERIC},
             </if>
         </trim>
     </insert>
