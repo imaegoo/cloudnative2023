@@ -35,8 +35,15 @@ public class LowcodePagesServiceImpl implements LowcodePagesService {
     @Override
     public int insertSelective(LowcodePages lowcodePages) {
         Date currentDate = new Date();
-        Timestamp timestamp = new Timestamp(currentDate.getTime());
-        lowcodePages.setCreatedTime(timestamp);
+        if(lowcodePages.getCreatedTime() == null) {
+            Timestamp timestamp = new Timestamp(currentDate.getTime());
+            lowcodePages.setCreatedTime(timestamp);
+        }
+
+        if(lowcodePages.getUpdatedTime() == null) {
+            Timestamp timestamp = new Timestamp(currentDate.getTime());
+            lowcodePages.setUpdatedTime(timestamp);
+        }
         return lowcodePagesMapper.insertSelective(lowcodePages);
     }
 }

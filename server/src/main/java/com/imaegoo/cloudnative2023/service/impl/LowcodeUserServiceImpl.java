@@ -31,8 +31,15 @@ public class LowcodeUserServiceImpl implements LowcodeUserService {
     @Override
     public int insert(LowcodeUser lowcodeUser) {
         Date currentDate = new Date();
-        Timestamp timestamp = new Timestamp(currentDate.getTime());
-        lowcodeUser.setCreatedTime(timestamp);
+        if (lowcodeUser.getCreatedTime() == null) {
+            Timestamp timestamp = new Timestamp(currentDate.getTime());
+            lowcodeUser.setCreatedTime(timestamp);
+        }
+
+        if (lowcodeUser.getUpdatedTime() == null) {
+            Timestamp timestamp = new Timestamp(currentDate.getTime());
+            lowcodeUser.setUpdatedTime(timestamp);
+        }
         return lowcodeUserMapper.insert(lowcodeUser);
     }
 }

@@ -27,10 +27,10 @@
                 created_time,
             </if>
             <if test="updatedTime != null">
-                update_time,
+                updated_time,
             </if>
             <if test="isDeleted != null and isDeleted != ''">
-                isDeleted,
+                is_deleted,
             </if>
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
