@@ -76,11 +76,11 @@ public class LowcodePages {
         this.updatedTime = updatedTime;
     }
 
-    public int getIsdeleted() {
+    public int getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsdeleted(int isDeleted) {
+    public void setIsDeleted(int isDeleted) {
         this.isDeleted = isDeleted;
     }
 }

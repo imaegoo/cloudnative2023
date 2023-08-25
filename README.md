@@ -14,7 +14,7 @@
 
 ![](./img/architecture-3.png)
 
-操作系统: Alpine Linux 容器
+操作系统: Linux 容器；前端 Alpine；后端 Ubuntu
 
 运行环境: 阿里云 SAE
 
