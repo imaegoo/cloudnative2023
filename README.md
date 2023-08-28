@@ -1,14 +1,21 @@
 # 赛题简介
 
-（介绍下整体的设计思想、背景，特点功能模块划分，应用场景和效果等）
-
 本项目结合了 [低代码引擎](https://lowcode-engine.cn/) 和 [阿里云 SAE](https://sae.console.aliyun.com/) 的能力，用户能够仅通过简单的操作，拖拉拽即可自动化生成网站。
 
 本项目包含低代码设计器模块和网页展示模块，用户先通过低代码设计器设计好网页，然后发布，可得到一个网站地址，打开即可查看生成的网站。
 
-# 架构图
+# 作品展示
 
-（介绍软件的技术架构和特点，包括软件的操作系统、运行环境、编程语言、数据存储方式等方面）
+作品演示视频地址
+
+[![](https://img.shields.io/badge/Bilibili-BV1Gp4y1N7sa-%23fb7299)](https://www.bilibili.com/video/BV1Gp4y1N7sa/)
+
+demo 地址（~~因为阿里云给的免费额度快用完了，所以 demo 环境暂时停止服务~~）
+
+[![](https://img.shields.io/badge/Demo-lowcode.imaegoo.com%3A8080-blue)
+](http://lowcode.imaegoo.com:8080)
+
+# 架构图
 
 ![](./img/architecture-2.png)
 
@@ -26,16 +33,6 @@
 
 公网访问: 阿里云 SLB
 
-# 安全和稳定性
-
-（介绍软件的安全性和稳定性，包括软件的安全性保障、数据备份和恢复、性能稳定性等方面，可以说明安全性和稳定性如何保证）
-
-# 作品展示
-
-（附上SAE控制台地址，或者一段演示视频，展示作品提供的能力、设计思路、优势亮点等。视频不求形式，讲述清楚即可。）
-
-demo 地址: http://lowcode.imaegoo.com:8080
-
 # 详细设计
 
 1. 用户登录页：包含用户名、密码输入框、登录按钮
@@ -46,7 +43,7 @@ demo 地址: http://lowcode.imaegoo.com:8080
     2. 用户只能将网页发布到自己的三级域名或无人使用的三级域名上，发布到别人的三级域名将会报错
 4. 访客访问三级域名时，将从数据库动态请求该页面内容，在浏览器中渲染展示
 
-# 数据库表结构设计
+# 数据库表结构设计（部分）
 
 `lowcode_pages`
 
@@ -69,7 +66,7 @@ demo 地址: http://lowcode.imaegoo.com:8080
 - updatedTime TIMESTAMP
 - isDeleted INT 1
 
-# API
+# API（部分）
 
 POST `/api/user/login`
 
