@@ -3,7 +3,7 @@ CREATE USER 'test' IDENTIFIED BY 'test';
 GRANT ALL PRIVILEGES ON testdb.* TO 'test';
 
 CREATE TABLE `testdb`.`lowcode_pages` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT UNSIGNED AUTO_INCREMENT,
   `page_id` VARCHAR(50) NULL,
   `title` VARCHAR(300) NULL,
   `content` LONGTEXT NULL,
@@ -16,7 +16,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE TABLE `testdb`.`lowcode_users` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT UNSIGNED AUTO_INCREMENT,
   `username` VARCHAR(100) NULL,
   `password` VARCHAR(100) NULL,
   `email` VARCHAR(100) NULL,
